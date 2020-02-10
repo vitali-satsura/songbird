@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Piskel clone</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-wrapper">
+      <div class="header-logo">
+        <h1 class="header-title"><img class="header-icon" src="./images/logo_transparent_small_compact.png" alt="logo">
+          clone
+        </h1>
+      </div>
+      <div class="header-buttons">
+        <div class="header-user">
+          <img src="" alt="" class="header-user__icon">
+          <span class="header-user__name"></span>
+        </div>
+        <button class="header-button login active">Sign in</button>
+        <button class="header-button logout">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="tools">
+      <div class="tools-inner">
+        <div class="tools-pixel">
+          <div class="tools-pixel__size size1 selected"></div>
+          <div class="tools-pixel__size size2"></div>
+          <div class="tools-pixel__size size3"></div>
+          <div class="tools-pixel__size size4"></div>
+          <div class="tools-pixel__description">Pen size from 1 to 4 pixels</div>
+        </div>
+        <div class="tools-wrapper">
+          <div class="tools-pen tool">
+            <div class="tools-pen__description tool-description">Pen tool (P)</div>
+          </div>
+          <div class="tools-paint-bucket tool ">
+            <div class="tools-paint-bucket__description tool-description">Paint bucket tool (B)</div>
+          </div>
+          <div class="tools-color-picker tool">
+            <div class="tools-color-picker__description tool-description">Color picker (C)</div>
+          </div>
+          <div class="tools-colorswap tool">
+            <div class="tools-colorswap__description tool-description">Paint all pixels of the same color (A)</div>
+          </div>
+          <div class="tools-eraser tool">
+            <div class="tools-eraser__description tool-description">Eraser tool (E)</div>
+          </div>
+          <div class="tools-stroke tool">
+            <div class="tools-stroke__description tool-description">Stroke tool (L)</div>
+          </div>
+          <div class="tools-clear tool">
+            <div class="tools-clear__description tool-description">Clear</div>
+          </div>
+        </div>
+        <div class="tools-color__wrapper">
+          <div class="tools-color__current color">
+            <input type="color" id="color-input" class="tools-color__input">
+            <div class="tools-color__current--description color__description">Primary color</div>
+          </div>
+          <div class="tools-color__prev color">
+            <div class="tools-color__prev--description color__description">Secondary color</div>
+          </div>
+          <div class="tools-swapcolors__button">
+            <div class="tools-swapcolors__button--description color__description">Swap colors</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="frames">
+      <div class="frames-wrapper">
+        <div class="frame1 frames-canvas__wrapper selected">
+          <canvas id="frames-canvas1" class="frames-canvas" width="96" height="96"></canvas>
+          <div class="frames-canvas__number">1</div>
+          <div class="frames-canvas__delete">
+            <div class="frames-canvas__delete--description">Delete this frame</div>
+          </div>
+          <div class="frames-canvas__duplicate">
+            <div class="frames-canvas__duplicate--description">Duplicate this frame</div>
+          </div>
+        </div>
+      </div>
+      <div class="frames-add">
+        <div class="frames-plus">+</div>
+        <div class="frames-label">Add new frame</div>
+      </div>
+    </section>
+    <section class="canvas-section">
+      <canvas id="canvas" class="canvas" width="512" height="512"></canvas>
+    </section>
+    <section class="animation">
+      <div class="animation-canvas__wrapper">
+        <canvas class="animation-canvas" width="128" height="128"></canvas>
+        <div class="animation-fullscreen"></div>
+        <div class="animation-range__wrapper">
+          <label for="fps" class="fps-label">5 FPS</label>
+          <input type="range" name="fps" id="fps" class="animation-fps" min="1" max="24" value="5" step="1">
+        </div>
+      </div>
+      <div class="size-wrapper">
+        <div id="32x32" class="32x32 size">32x32</div>
+        <div id="64x64" class="64x64 size">64x64</div>
+        <div id="128x128" class="128x128 size">128x128</div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+
+</html>
