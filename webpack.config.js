@@ -4,13 +4,16 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
   devServer: {
     overlay: true,
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   module: {
     rules: [
@@ -39,12 +42,8 @@ module.exports = {
           {
             loader: 'css-loader',
           },
-
           {
             loader: 'sass-loader',
-            options: {
-              implementation: require('sass'),
-            },
           },
         ],
       },
