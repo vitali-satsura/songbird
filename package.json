@@ -14,15 +14,17 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.8.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "babel-preset-airbnb": "^4.1.0",
     "css-loader": "^3.2.0",
     "eslint": "^6.6.0",
-    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
     "file-loader": "^4.2.0",
     "html-loader": "^0.5.5",
@@ -38,6 +40,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   }
 }
