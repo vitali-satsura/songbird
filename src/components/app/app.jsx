@@ -3,6 +3,8 @@ import React from 'react';
 import AppHeader from '../app-header';
 import IndicationList from '../indication-list';
 import './app.scss';
+import Question from '../question/question';
+import NextLevel from '../next-level';
 
 const App = () => {
   const types = [
@@ -18,6 +20,8 @@ const App = () => {
     <div className="app">
       <AppHeader />
       <IndicationList types={types} />
+      <Question />
+      <NextLevel />
     </div>
   );
 };

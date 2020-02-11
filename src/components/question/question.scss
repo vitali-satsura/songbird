@@ -1,0 +1,17 @@
+.question {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #1b1b1b;
+  padding: 15px;
+  border-radius: 5px;
+  &-bird-name {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+    font-size: 30px;
+  }  
+  &-player-wrapper {
+    margin-left: 30px;
+    width: 80%;  
+  }
+}
