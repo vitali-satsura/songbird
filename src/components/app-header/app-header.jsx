@@ -2,9 +2,9 @@ import React from 'react';
 
 import Logo from '../logo';
 import Score from '../score';
-import './header.scss';
+import './app-header.scss';
 
-const Header = () => (
+const AppHeader = () => (
   <header className="header">
     <div className="header-wrapper">
       <Logo />
@@ -13,4 +13,4 @@ const Header = () => (
   </header>
 );
 
-export default Header;
+export default AppHeader;
