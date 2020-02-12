@@ -1,0 +1,10 @@
+.bird {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  &-name {
+    margin-left: 50px;
+    width: 60%;
+  }
+}
+

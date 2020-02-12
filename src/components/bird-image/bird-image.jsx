@@ -1,11 +1,10 @@
 import React from 'react';
 
 import './bird-image.scss';
-import img from './bird.jpg';
 
-const BirdImage = () => (
+const BirdImage = ({ image }) => (
   <div className="bird-image-wrapper">
-    <img src={img} alt="bird" className="bird-image" />
+    <img src={image} alt="bird" className="bird-image" />
   </div>
 );
 

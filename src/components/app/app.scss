@@ -4,3 +4,18 @@
   height: 100vh;
   max-width: 1400px;  
 }
+
+.birds {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;  
+}
+
+.bird-container {
+  margin-left: 10px;
+  padding: 15px;
+  background-color: #1b1b1b;  
+  border-radius: 5px;
+  width: 50%;
+  color: #FFFFFF;
+}

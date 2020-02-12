@@ -4,10 +4,10 @@ import BirdImage from '../bird-image';
 import Player from '../player';
 import './question.scss';
 
-const Question = () => {
+const Question = ({ image }) => {
   return (
     <section className="question">
-      <BirdImage />
+      <BirdImage image={image} />
       <div className="question-player-wrapper">
         <h3 className="question-bird-name">******</h3>
         <Player />
