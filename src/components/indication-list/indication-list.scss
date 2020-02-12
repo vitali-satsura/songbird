@@ -1,0 +1,20 @@
+.indication-list {
+  display: flex;
+  justify-content: space-between;
+  color: #FFFFFF;
+  background-color: #00531c;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 25px;
+  border-radius: 5px;
+  overflow: hidden;
+  &-item {
+    flex: auto;
+    display: inline-block;
+    text-align: center;
+    &.active {
+      background-color: #007527;
+    }
+  }
+}
