@@ -2,6 +2,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
+const SRC = path.resolve(__dirname, 'src/components/app');
+
 module.exports = {
   mode: 'development',
   entry: './src/index.jsx',
@@ -57,6 +59,11 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.mp3$/,
+        include: SRC,
+        loader: 'file-loader',
       },
       {
         test: /\.(woff|woff2|ttf|otf|eot)$/,

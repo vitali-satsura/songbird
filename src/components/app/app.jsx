@@ -12,6 +12,8 @@ import StartMessage from '../start-message';
 import image from './bird.jpg';
 import myRandom from '../../helpers/utils';
 import EndGame from '../end-game';
+import rightAnswerSound from './right-answer.mp3';
+import wrongAnswerSound from './wrong-answer.mp3'
 
 export default class App extends React.Component {
   constructor() {
@@ -24,6 +26,7 @@ export default class App extends React.Component {
     this.isEndGame = false;
     this.score = 0;
     this.count = 0;
+    this.isScoreAvailable = true;
   }
 
   state = {
@@ -49,12 +52,17 @@ export default class App extends React.Component {
   }
 
   addScore = (count) => {
-    this.score += 6 - count;
+    if (this.isScoreAvailable) {
+      this.score += 6 - count;
+      this.isScoreAvailable = false;
+      this.playSound(rightAnswerSound);
+    }
   }
 
   chooseBird = (id) => {
     this.isChoose = true;
     this.count += 1;
+    // this.playSound();
 
     this.setState(({ currentBird, currentImage, currentName, birdState }) => {
       const newBird = birdsData[this.level].filter((el) => el.id === id)[0];
@@ -76,6 +84,7 @@ export default class App extends React.Component {
           rightAnswer: true
         }
       } else if (!this.isGotRightAnswer) {
+        this.playSound(wrongAnswerSound);
         newItem = {
           ...oldItem,
           error: true
@@ -106,12 +115,19 @@ export default class App extends React.Component {
     return birdsData[this.level].filter((el) => el.id === this.rightAnswerId)[0].audio;
   }
 
+  playSound = (sound) => {
+    let audio = new Audio();
+    audio.src = sound;
+    audio.play();
+  }
+
   reset = () => {
     this.isChoose = false;
     this.rightAnswerId = myRandom(1, 6);
     this.isGotRightAnswer = false;
     this.isStartNextRound = false;
     this.count = 0;
+    this.isScoreAvailable = true;
 
     this.setState((state) => {
       const oldItem = state.types;
@@ -169,8 +185,7 @@ export default class App extends React.Component {
     }
     return (
       <div className="app">
-        <AppHeader score={this.score} />
-        <IndicationList types={this.state.types} />
+        <AppHeader score={this.score} types={this.state.types} />
         <main className={classNames}>
           <Question image={this.state.currentImage}
             audio={this.getAudio()}
