@@ -11,13 +11,19 @@ import Bird from '../bird';
 import StartMessage from '../start-message';
 import image from './bird.jpg';
 import myRandom from '../../helpers/utils';
+import EndGame from '../end-game';
 
 export default class App extends React.Component {
   constructor() {
     super();
-    this.round = 0;
+    this.level = 0;
     this.isChoose = false;
     this.rightAnswerId = myRandom(1, 6);
+    this.isGotRightAnswer = false;
+    this.isStartNextRound = false;
+    this.isEndGame = false;
+    this.score = 0;
+    this.count = 0;
   }
 
   state = {
@@ -30,6 +36,8 @@ export default class App extends React.Component {
       { id: 6, type: 'Морские птицы', active: false },
     ],
     currentBird: {},
+    currentImage: image,
+    currentName: '******',
     birdState: [
       { id: 1, rightAnswer: false, error: false },
       { id: 2, rightAnswer: false, error: false },
@@ -40,26 +48,41 @@ export default class App extends React.Component {
     ]
   }
 
-  refreshBird = (id) => {
-    console.log(id)
-    this.isChoose = true;
+  addScore = (count) => {
+    this.score += 6 - count;
+  }
 
-    this.setState(({ currentBird, birdState }) => {
-      const newBird = birdsData[this.round].filter((el) => el.id === id)[0];
+  chooseBird = (id) => {
+    this.isChoose = true;
+    this.count += 1;
+
+    this.setState(({ currentBird, currentImage, currentName, birdState }) => {
+      const newBird = birdsData[this.level].filter((el) => el.id === id)[0];
       const index = birdState.findIndex((el) => el.id === id);
 
       const oldItem = birdState[index];
       let newItem = {};
+      let newImage = currentImage;
+      let newName = currentName;
 
       if (id === this.rightAnswerId) {
+        newImage = newBird.image;
+        newName = newBird.name;
+        this.isGotRightAnswer = true;
+        this.isStartNextRound = true;
+        this.addScore(this.count);
         newItem = {
           ...oldItem,
           rightAnswer: true
         }
-      } else {
+      } else if (!this.isGotRightAnswer) {
         newItem = {
           ...oldItem,
           error: true
+        }
+      } else {
+        newItem = {
+          ...oldItem
         }
       }
 
@@ -72,31 +95,108 @@ export default class App extends React.Component {
       return {
         ...this.state,
         currentBird: newBird,
+        currentImage: newImage,
+        currentName: newName,
         birdState: newArray
       };
     });
   }
 
+  getAudio = () => {
+    return birdsData[this.level].filter((el) => el.id === this.rightAnswerId)[0].audio;
+  }
+
+  reset = () => {
+    this.isChoose = false;
+    this.rightAnswerId = myRandom(1, 6);
+    this.isGotRightAnswer = false;
+    this.isStartNextRound = false;
+    this.count = 0;
+
+    this.setState((state) => {
+      const oldItem = state.types;
+      oldItem.forEach((el) => {
+        if (el['active']) {
+          el['active'] = false;
+        }
+        if (el['id'] === this.level + 1) {
+          el['active'] = true;
+        }
+
+      });
+
+      return {
+        types: oldItem,
+        currentBird: {},
+        currentImage: image,
+        currentName: '******',
+        birdState: [
+          { id: 1, rightAnswer: false, error: false },
+          { id: 2, rightAnswer: false, error: false },
+          { id: 3, rightAnswer: false, error: false },
+          { id: 4, rightAnswer: false, error: false },
+          { id: 5, rightAnswer: false, error: false },
+          { id: 6, rightAnswer: false, error: false }
+        ]
+      };
+    })
+  }
+
+  startNextLevel = () => {
+    if (!this.isStartNextRound) return;
+    if (this.level < 5) {
+      this.level += 1;
+    } else {
+      this.isEndGame = true;
+      this.level = 0;
+    }
+
+    this.reset();
+
+  }
+
+  startGame = () => {
+    this.reset();
+    this.isEndGame = false;
+    this.level = 0;
+    this.score = 0;
+  }
+
   render() {
-    console.log(this.state);
+    let classNames = 'main';
+    if (this.isEndGame) {
+      classNames += ' hidden';
+    }
     return (
       <div className="app">
-        <AppHeader />
+        <AppHeader score={this.score} />
         <IndicationList types={this.state.types} />
-        <Question image={image} />
-        <section className="birds">
-          <BirdsList
-            birds={birdsData[this.round]}
-            onRefresh={this.refreshBird}
-            birdState={this.state.birdState}
+        <main className={classNames}>
+          <Question image={this.state.currentImage}
+            audio={this.getAudio()}
+            name={this.state.currentName} />
+          <section className="birds">
+            <BirdsList
+              birds={birdsData[this.level]}
+              onRefresh={this.chooseBird}
+              birdState={this.state.birdState}
+            />
+            <div className="bird-container">
+              {this.isChoose
+                ? <Bird bird={this.state.currentBird} />
+                : <StartMessage />}
+            </div>
+          </section>
+          <NextLevel
+            isActive={this.isStartNextRound}
+            onStartNextLevel={this.startNextLevel}
           />
-          <div className="bird-container">
-            {this.isChoose
-              ? <Bird bird={this.state.currentBird} />
-              : <StartMessage />}
-          </div>
-        </section>
-        <NextLevel />
+        </main>
+        <EndGame
+          score={this.score}
+          isVisible={this.isEndGame}
+          onStartGame={this.startGame}
+        />
       </div>
     );
   }

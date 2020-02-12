@@ -1,8 +1,8 @@
 import React from 'react';
 import './score.scss';
 
-const Score = () => (
-  <div className="header-score">Score: 0</div>
+const Score = ({ score }) => (
+  <div className="header-score">{`Score: ${score}`}</div>
 );
 
 export default Score;

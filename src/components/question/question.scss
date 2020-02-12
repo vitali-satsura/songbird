@@ -13,6 +13,7 @@
   &-bird-name {
     margin-top: 10px;
     margin-bottom: 20px;
+    margin-left: 20px;
     color: #FFFFFF;
     font-size: 30px;
     @media only screen and (max-width: 550px) {
@@ -28,27 +29,3 @@
     }
   }
 }
-
-// .rhap_time {
-//   @media only screen and (max-width: 550px) {
-//     display: none;
-//   }
-// }
-// .rhap_additional-controls {
-//   @media only screen and (max-width: 550px) {
-//     display: none;
-//   }
-// }
-
-// .rhap_volume-controls {
-//   @media only screen and (max-width: 550px) {
-//     display: none;
-//   }
-// }
-
-// .rhap_controls-section {
-//   @media only screen and (max-width: 550px) {
-//     flex-direction: column;
-//     justify-content: flex-start;
-//   }
-// }

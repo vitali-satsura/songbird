@@ -2,8 +2,18 @@ import React from 'react';
 
 import './next-level.scss';
 
-const NextLevel = () => (
-  <button type="button" className="next-level">Next Level</button>
-);
+const NextLevel = ({ isActive, onStartNextLevel }) => {
+  let classNames = 'next-level';
+  if (isActive) {
+    classNames += ' active';
+  }
+  return (
+    <button
+      type="button"
+      className={classNames}
+      onClick={onStartNextLevel}
+    >Next Level</button>
+  );
+};
 
 export default NextLevel;

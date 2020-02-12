@@ -2,6 +2,9 @@
   background-color: #1b1b1b;  
   border-radius: 5px;
   width: 50%;
+  @media only screen and (max-width: 950px) {    
+    width: 100%;    
+   }  
 }
 
 .birds-list {

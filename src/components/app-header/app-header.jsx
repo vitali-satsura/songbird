@@ -4,11 +4,11 @@ import Logo from '../logo';
 import Score from '../score';
 import './app-header.scss';
 
-const AppHeader = () => (
+const AppHeader = ({ score }) => (
   <header className="header">
     <div className="header-wrapper">
       <Logo />
-      <Score />
+      <Score score={score} />
     </div>
   </header>
 );

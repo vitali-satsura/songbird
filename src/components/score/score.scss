@@ -3,4 +3,8 @@
   margin-right: 20px;
   font-size: 32px;
   color: #FFFFFF;
+  @media only screen and (max-width: 550px) {
+    margin-top: 0;
+    margin-right: 0;    
+  }  
 }
